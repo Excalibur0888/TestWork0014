@@ -1,36 +1,154 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Abelohost Shop
 
-## Getting Started
+Веб-приложение интернет-магазина с функционалом авторизации пользователей и отображения списка товаров, построенное с использованием публичного API DummyJSON.
 
-First, run the development server:
+## Технологический стек
 
+- **Next.js 15** (App Router)
+- **TypeScript**
+- **Zustand** - управление состоянием
+- **Axios** - HTTP клиент
+- **SCSS модули** - стилизация
+- **ESLint, Prettier, Stylelint** - качество кода
+
+## Функциональные возможности
+
+### Авторизация
+- Форма авторизации с валидацией полей
+- JWT токен для аутентификации
+- Автоматическое перенаправление после входа
+- Отображение ошибок авторизации
+
+### Отображение товаров
+- Список из 12 товаров с DummyJSON API
+- Карточки товаров с изображением, названием, категорией и ценой
+- Кнопка "Add to cart" для авторизованных пользователей
+- Индикация загрузки и обработка ошибок
+
+### Навигация
+- Header с информацией о пользователе или ссылкой на вход
+- Footer с текущим годом и email авторизованного пользователя
+- Защищенные маршруты
+
+## Быстрый старт
+
+### Установка зависимостей
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Запуск в режиме разработки
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Сборка для продакшена
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Тестовые данные для входа
 
-To learn more about Next.js, take a look at the following resources:
+Для тестирования авторизации используйте следующие данные:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Username:** kminchelle
+- **Password:** 0lelplR
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Также доступны другие тестовые пользователи из DummyJSON API.
 
-## Deploy on Vercel
+## Структура проекта
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── api/                 # API функции и конфигурация
+│   ├── auth.ts         # API авторизации
+│   ├── products.ts     # API товаров
+│   └── config.ts       # Конфигурация Axios
+├── components/         # React компоненты
+│   ├── Header/         # Компонент шапки
+│   ├── Footer/         # Компонент подвала
+│   ├── ProductCard/    # Карточка товара
+│   └── Loader/         # Индикатор загрузки
+├── store/              # Zustand хранилища
+│   ├── authStore.ts    # Состояние авторизации
+│   └── productsStore.ts # Состояние товаров
+├── types/              # TypeScript типы
+│   ├── auth.ts         # Типы авторизации
+│   └── product.ts      # Типы товаров
+├── styles/             # Глобальные стили
+│   └── globals.scss    # Основные стили
+└── app/                # Страницы приложения (App Router)
+    ├── layout.tsx      # Корневой layout
+    ├── page.tsx        # Главная страница
+    └── login/          # Страница авторизации
+        └── page.tsx
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API Endpoints
+
+Приложение использует следующие endpoints DummyJSON API:
+
+- `POST /auth/login` - авторизация пользователя
+- `GET /auth/me` - получение данных текущего пользователя
+- `GET /products` - получение списка товаров
+
+## Особенности реализации
+
+### Адаптивность
+- Приложение корректно отображается на десктопных и мобильных устройствах
+- Использование CSS Grid и Flexbox для создания адаптивных макетов
+- Отзывчивая типографика и интерфейсные элементы
+
+### Безопасность
+- Middleware для защиты маршрутов
+- Автоматическое перенаправление неавторизованных пользователей
+- Очистка токенов при ошибках авторизации
+
+### Управление состоянием
+- Zustand для глобального состояния приложения
+- Персистентность данных авторизации
+- Автоматическая инициализация состояния при загрузке
+
+### Обработка ошибок
+- Централизованная обработка ошибок API
+- Пользовательские сообщения об ошибках
+- Возможность повторной попытки при ошибках
+
+## Команды разработки
+
+```bash
+# Запуск сервера разработки
+npm run dev
+
+# Сборка проекта
+npm run build
+
+# Запуск продакшен сервера
+npm start
+
+# Проверка типов TypeScript
+npm run type-check
+
+# Линтинг кода
+npm run lint
+
+# Форматирование кода
+npm run format
+
+# Проверка стилей
+npm run stylelint
+```
+
+## Поддерживаемые браузеры
+
+- Chrome (последние 2 версии)
+- Firefox (последние 2 версии)
+- Safari (последние 2 версии)
+- Edge (последние 2 версии)
+
+## Лицензия
+
+Этот проект создан в образовательных целях.

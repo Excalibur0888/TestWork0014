@@ -1,0 +1,34 @@
+.footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  color: #6c757d;
+  margin-top: auto;
+  padding: 1rem 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.text {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.userEmail {
+  color: #495057;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .text {
+    font-size: 0.8rem;
+  }
+}
